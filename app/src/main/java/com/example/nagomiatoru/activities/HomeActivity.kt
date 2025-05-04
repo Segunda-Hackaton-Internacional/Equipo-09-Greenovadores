@@ -2,7 +2,6 @@ package com.example.nagomiatoru.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.example.nagomiatoru.R
 import com.example.nagomiatoru.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
             val fragment = when (item.itemId) {
                 R.id.nav_home -> HomeFragment()
                 R.id.nav_profile -> ProfileFragment()
-                R.id.nav_nutrition -> NutritionFragment()
+                R.id.nav_shopping -> ShoppingFragment()
                 R.id.nav_wellness -> WellnessFragment()
                 R.id.nav_favorites -> FavoritesFragment()
                 else -> null

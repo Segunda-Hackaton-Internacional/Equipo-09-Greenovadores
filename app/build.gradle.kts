@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation (libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

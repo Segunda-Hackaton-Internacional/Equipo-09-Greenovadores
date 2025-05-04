@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#2C6734</color>
     <color name="beige">#FDF6E6</color>
+    <color name="brown">#8B4513</color>
+    <color name="dark_brown">#5D2906</color>
+    <color name="light_brown">#A67B5B</color>
+    <color name="light_gray">#E0E0E0</color>
+    <color name="divider">#F0F0F0</color>
+    <color name="red">#FF5252</color>
+    <color name="yellow">#FFD600</color>
 </resources>
