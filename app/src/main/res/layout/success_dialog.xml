@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#80000000"> <!-- Fondo negro con opacidad -->
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/beige">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="32dp">
+
+            <!-- Animación de éxito con círculo y marca de verificación -->
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- Círculo principal verde -->
+                <View
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_green_background" />
+
+                <!-- Marca de verificación -->
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_check"
+                    android:contentDescription="Check mark" />
+
+                <!-- Círculos pequeños alrededor (decoración) -->
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/circle_small_green" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/circle_small_green" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/circle_small_green" />
+            </FrameLayout>
+
+            <!-- Mensaje de éxito -->
+            <TextView
+                android:id="@+id/tv_success_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log in Successful!"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <!-- Texto de espera -->
+            <TextView
+                android:id="@+id/tv_success_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please wait.\nYou will be directed to the homepage."
+                android:textColor="#808080"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Indicador de progreso -->
+            <ProgressBar
+                android:id="@+id/progress_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/green"
+                android:layout_marginTop="8dp"
+                style="?android:attr/progressBarStyleSmall" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

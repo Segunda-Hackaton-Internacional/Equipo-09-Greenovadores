@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/beige">
+
+    <!-- Header with back button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="25dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back button" />
+    </LinearLayout>
+
+    <!-- Title and Subtitle -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello there 👋"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please enter your email &amp; password to create an account"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="35dp"/>
+
+    <!-- Email Field -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="2dp"/>
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email@example.com"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:drawableEnd="@drawable/ic_email"
+        android:layout_marginBottom="24dp"/>
+
+
+    <!-- Password Field -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:drawableEnd="@drawable/ic_password_hidden"
+        android:layout_marginBottom="40dp"/>
+
+    <!-- Terms Checkbox -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp">
+
+        <CheckBox
+            android:id="@+id/checkboxTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/green" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I agree to Nagomi Atoru "
+            android:textSize="14sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/textPublicAgreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Public Agreement"
+            android:textSize="13sp"
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=", "
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/textTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terms"
+            android:textSize="13sp"
+            android:textColor="@color/green"/>
+    </LinearLayout>
+
+    <!-- Second row of terms -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="-24dp"
+        android:layout_marginBottom="45dp"
+        android:layout_marginStart="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="and  "
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:id="@+id/textPrivacyPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy"
+            android:textSize="14sp"
+            android:textColor="@color/green"/>
+    </LinearLayout>
+
+    <!-- Login link -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? "
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/textLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log in"
+            android:textSize="14sp"
+            android:textColor="@color/green"/>
+    </LinearLayout>
+
+    <!-- Continue Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:textColor="@android:color/white"
+        android:background="@drawable/button_green_background"
+        android:padding="14dp"
+        android:layout_marginTop="24dp"/>
+
+</LinearLayout>

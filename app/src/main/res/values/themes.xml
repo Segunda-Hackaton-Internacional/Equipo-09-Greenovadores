@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base application theme -->
+    <style name="Theme.NagomiAtoru" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">@color/beige</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/beige</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 
-    <style name="Theme.NagomiAtoru" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Splash screen theme -->
+    <style name="Theme.NagomiAtoru.Splash" parent="Theme.NagomiAtoru">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

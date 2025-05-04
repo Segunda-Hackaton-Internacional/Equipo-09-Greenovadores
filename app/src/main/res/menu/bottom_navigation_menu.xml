@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_profile_placeholder"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/nav_nutrition"
+        android:icon="@drawable/ic_nutrition"
+        android:title="Nutrición" />
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_wellness"
+        android:icon="@drawable/ic_wellness"
+        android:title="Bienestar" />
+    <item
+        android:id="@+id/nav_favorites"
+        android:icon="@drawable/ic_favorites"
+        android:title="Favoritos" />
+</menu>

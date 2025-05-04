@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/beige">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/logo_app"
+        android:contentDescription="ChattyAI Logo" />
+
+    <!-- Título -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Welcome to"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Nombre de la app -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nagomi Atoru 👋"
+        android:textColor="@color/green"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <!-- Texto descriptivo -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Start this fantastic trip"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp" />
+
+</LinearLayout>
