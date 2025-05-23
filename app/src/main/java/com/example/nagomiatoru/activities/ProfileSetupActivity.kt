@@ -3,90 +3,67 @@ package com.example.nagomiatoru.activities
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.nagomiatoru.R
+import com.example.nagomiatoru.data.App
+import com.example.nagomiatoru.data.SessionManager
+import com.example.nagomiatoru.databinding.ActivityProfileSetupBinding
+import com.example.nagomiatoru.models.User
+import com.example.nagomiatoru.models.enums.SexEnum
 import com.example.nagomiatoru.utils.SuccessDialogFragment
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import java.util.Calendar
 
 class ProfileSetupActivity : AppCompatActivity() {
 
-    private lateinit var btnBack: ImageButton
-    private lateinit var imageProfile: ImageView
-    private lateinit var buttonAddPhoto: ImageView
-    private lateinit var editTextFullName: EditText
-    private lateinit var layoutCountryCode: LinearLayout
-    private lateinit var spinnerGender: Spinner
-    private lateinit var editTextDateOfBirth: EditText
-    private lateinit var buttonSkip: Button
-    private lateinit var buttonContinue: Button
-
+    private lateinit var binding: ActivityProfileSetupBinding
     private val calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_setup)
+
+        // Iniciar ViewBinding
+        binding = ActivityProfileSetupBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Ocultar la barra de acción
         supportActionBar?.hide()
 
-        // Initialize views
-        btnBack = findViewById(R.id.btnBack)
-        imageProfile = findViewById(R.id.imageProfile)
-        buttonAddPhoto = findViewById(R.id.buttonAddPhoto)
-        editTextFullName = findViewById(R.id.editTextFullName)
-        layoutCountryCode = findViewById(R.id.layoutCountryCode)
-        spinnerGender = findViewById(R.id.spinnerGender)
-        editTextDateOfBirth = findViewById(R.id.editTextDateOfBirth)
-        buttonSkip = findViewById(R.id.buttonSkip)
-        buttonContinue = findViewById(R.id.buttonContinue)
 
         // Set up click listeners
-        btnBack.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             finish()
         }
 
-        buttonAddPhoto.setOnClickListener {
+        binding.buttonAddPhoto.setOnClickListener {
             // Open gallery or camera to select profile photo
             showImagePickerDialog()
         }
 
-        layoutCountryCode.setOnClickListener {
-            // Show country code picker
-            showCountryCodeDialog()
-        }
-
-        spinnerGender = findViewById(R.id.spinnerGender)
-
-        val genderOptions = listOf("Select Gender", "Male", "Female", "Other", "Prefer not to say")
+        val genderOptions = SexEnum.getDisplayList()
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genderOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerGender.adapter = adapter
+        binding.spinnerGender.adapter = adapter
 
-        editTextDateOfBirth.setOnClickListener {
+        binding.editTextDateOfBirth.setOnClickListener {
             // Show date picker
             showDatePickerDialog()
         }
 
-        buttonSkip.setOnClickListener {
+        binding.buttonSkip.setOnClickListener {
             // Skip profile setup and navigate to main app
             performLogin()
         }
 
-        buttonContinue.setOnClickListener {
+        binding.buttonContinue.setOnClickListener {
             // Save profile data and navigate to main app
             if (validateForm()) {
-                saveProfileData()
-                performLogin()
+                saveUser()
             }
         }
     }
@@ -113,21 +90,6 @@ class ProfileSetupActivity : AppCompatActivity() {
         builder.show()
     }
 
-    private fun showCountryCodeDialog() {
-        // In a real app, you would show a list of country codes
-        Toast.makeText(this, "Country code selection would appear here", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun showGenderSelectionDialog() {
-        val genders = arrayOf("Male", "Female", "Other", "Prefer not to say")
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Select Gender")
-        builder.setItems(genders) { dialog, which ->
-            // Update gender field with selected option
-            Toast.makeText(this, "Selected: ${genders[which]}", Toast.LENGTH_SHORT).show()
-        }
-        builder.show()
-    }
 
     private fun showDatePickerDialog() {
         val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
@@ -137,7 +99,7 @@ class ProfileSetupActivity : AppCompatActivity() {
 
             // Format date and set to EditText
             val dateFormat = android.text.format.DateFormat.getDateFormat(applicationContext)
-            editTextDateOfBirth.setText(dateFormat.format(calendar.time))
+            binding.editTextDateOfBirth.setText(dateFormat.format(calendar.time))
         }
 
         DatePickerDialog(
@@ -149,37 +111,80 @@ class ProfileSetupActivity : AppCompatActivity() {
     }
 
     private fun validateForm(): Boolean {
-        var isValid = true
-
-        // Validate name (optional validation)
-        val name = editTextFullName.text.toString().trim()
-        if (name.isEmpty()) {
-            editTextFullName.error = "Please enter your name"
-            isValid = false
-        }
-
-        return isValid
+        return binding.editTextFullName.text.toString().isNotEmpty() and
+                binding.phoneCodePicker.selectedCountryCodeWithPlus.toString().isNotEmpty() and
+                binding.editTextPhoneNumber.text.toString().isNotEmpty() and
+                binding.spinnerGender.selectedItem.toString().isNotEmpty() and
+                binding.editTextDateOfBirth.text.toString().isNotEmpty()
     }
 
-    private fun saveProfileData() {
-        // Save profile data to SharedPreferences or your backend
-        val name = editTextFullName.text.toString().trim()
-        val dateOfBirth = editTextDateOfBirth.text.toString()
+    private fun saveUser() {
+        val selectedDisplayName = binding.spinnerGender.selectedItem.toString()
+        val selectedSexEnum = SexEnum.values().find { it.displayName == selectedDisplayName }
+        val sex = selectedSexEnum?.value.toString()
+        val name = binding.editTextFullName.text.toString().trim()
+        val dateOfBirth = binding.editTextDateOfBirth.text.toString()
+        val code = binding.phoneCodePicker.selectedCountryCodeWithPlus
+        val phoneNumber = code + binding.editTextPhoneNumber.text.toString()
+        val email = intent.getStringExtra("email").toString()
+        val password = intent.getStringExtra("password").toString()
 
+        Log.d("UserRegistration", "Starting user registration process")
+        Log.v("UserRegistration", "User data - Name: $name, Email: $email, Sex: $sex, DoB: $dateOfBirth, Phone: $phoneNumber")
 
-        Toast.makeText(this, "Profile saved successfully", Toast.LENGTH_SHORT).show()
-    }
+        // Crear usuario en Firebase Auth
+        App.auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { authTask ->
+                if (authTask.isSuccessful) {
+                    val userId = authTask.result?.user?.uid ?: ""
+                    Log.d("UserRegistration", "Auth successful. User ID: $userId")
 
-    private fun navigateToHomeApp() {
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        finish()
+                    // Crear objeto User para Firestore
+                    val user = User(
+                        uid = userId,
+                        name = name,
+                        email = email,
+                        sex = sex,
+                        birthDate = dateOfBirth,
+                        phone = phoneNumber
+                    )
+
+                    Log.d("UserRegistration", "Attempting to save user data to Firestore")
+
+                    // Guardar en Firestore
+                    App.firestore.collection("users")
+                        .document(userId)
+                        .set(user)
+                        .addOnSuccessListener {
+                            Log.i("UserRegistration", "User data successfully saved to Firestore")
+                            // Guardar datos en ocal storage
+                            SessionManager.saveSession(user)
+                            performLogin()
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("UserRegistration", "Error saving user data to Firestore", e)
+                            // Opcional: Mostrar error al usuario de otra forma (snackbar, dialog)
+                        }
+                } else {
+                    val exception = authTask.exception
+                    Log.e("UserRegistration", "Authentication failed", exception)
+
+                    when (exception) {
+                        is FirebaseAuthWeakPasswordException ->
+                            Log.w("UserRegistration", "Weak password: ${exception.message}")
+                        is FirebaseAuthInvalidCredentialsException ->
+                            Log.w("UserRegistration", "Invalid email format: ${exception.message}")
+                        is FirebaseAuthUserCollisionException ->
+                            Log.w("UserRegistration", "User already exists: ${exception.message}")
+                        else ->
+                            Log.e("UserRegistration", "Unknown authentication error", exception)
+                    }
+                    // Opcional: Mostrar error al usuario
+                }
+            }
     }
 
     private fun performLogin() {
-        // Aquí iría la lógica de autenticación real
-
         // Mostrar el diálogo de éxito
         SuccessDialogFragment.show(
             fragmentManager = supportFragmentManager,
@@ -190,5 +195,12 @@ class ProfileSetupActivity : AppCompatActivity() {
             // Esta acción se ejecutará cuando el diálogo se cierre
             navigateToHomeApp()
         }
+    }
+
+    private fun navigateToHomeApp() {
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }

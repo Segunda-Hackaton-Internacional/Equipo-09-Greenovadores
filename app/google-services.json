@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "604376729458",
+    "project_id": "atole-bb5d7",
+    "storage_bucket": "atole-bb5d7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604376729458:android:9034932071c9764dca7feb",
+        "android_client_info": {
+          "package_name": "com.example.nagomiatoru"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiohZKlhkw6RUkmnOl8dx1FCMEs_VmaKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

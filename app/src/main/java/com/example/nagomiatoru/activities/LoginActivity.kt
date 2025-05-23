@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.text.method.SingleLineTransformationMethod
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -12,12 +13,18 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nagomiatoru.R
+import com.example.nagomiatoru.data.App
+import com.example.nagomiatoru.data.SessionManager
+import com.example.nagomiatoru.models.User
 import com.example.nagomiatoru.utils.SuccessDialogFragment
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var etPassword: EditText
     private var passwordVisible = false
+
+
+    private val TAG = "SignInActivity"
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,8 +122,47 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun performLogin(email: String, password: String, rememberMe: Boolean) {
-        // Aquí iría la lógica de autenticación real
+        App.auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val uid = App.auth.currentUser?.uid
+                    if (uid != null) {
+                        getUserInfo(uid) { user ->
+                            if (user != null) {
+                                SessionManager.saveSession(user)
+                                loginSuccess()
+                            } else {
+                                Log.d(TAG, "usuario null")
+                            }
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "Falla autenticacion")
+                }
+            }
+    }
 
+
+    private fun getUserInfo(uid: String, callback: (User?) -> Unit) {
+        val db = App.firestore
+        db.collection("users") // Asegúrate de que esta colección exista
+            .document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val user = document.toObject(User::class.java)
+                    callback(user)
+                } else {
+                    callback(null)
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "Error getting user data", exception)
+                callback(null)
+            }
+    }
+
+    private fun loginSuccess() {
         // Mostrar el diálogo de éxito
         SuccessDialogFragment.show(
             fragmentManager = supportFragmentManager,
