@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Nagomi Atoru</string>
+    <string name="google_maps_key">AIzaSyBUnKRFlvofDT6AmqNE8Usj2gC2pRFoRvM</string>
+    <string name="openroute_api_key">5b3ce3597851110001cf6248bb2585fa7f5d423c9a5f1acb386baf83</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

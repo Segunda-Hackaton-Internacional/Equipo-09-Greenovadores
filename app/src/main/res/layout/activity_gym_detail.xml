@@ -1,0 +1,154 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.GymDetailActivity">
+
+    <!-- Header reutilizable -->
+    <include
+        android:id="@+id/header_layout"
+        layout="@layout/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- MapView ocupa 50% de la altura debajo del header -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/header_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/gymDetailsContainer" />
+
+    <!-- Contenedor de detalles con ScrollView debajo del mapa -->
+    <ScrollView
+        android:id="@+id/gymDetailsContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="72dp"
+        app:layout_constraintTop_toBottomOf="@id/mapView"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Contenido scrollable -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@color/beige">
+
+                <!-- TextViews con info del gimnasio -->
+                <!-- Nombre del gimnasio -->
+                <TextView
+                    android:id="@+id/gymNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gym Name"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:paddingBottom="8dp" />
+
+                <!-- Dirección del gimnasio -->
+                <TextView
+                    android:id="@+id/gymAddressTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:drawableLeft="@drawable/outline_fmd_good_24"
+                    android:drawablePadding="8dp"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:paddingBottom="8dp" />
+
+                <!-- Teléfono del gimnasio -->
+                <TextView
+                    android:id="@+id/gymPhoneTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Telephone"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="8dp"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:paddingBottom="8dp" />
+
+                <!-- Horario del gimnasio -->
+                <TextView
+                    android:id="@+id/gymOpeningHoursTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Opening hours"
+                    android:drawableLeft="@drawable/ic_clock"
+                    android:drawablePadding="8dp"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:paddingBottom="8dp" />
+
+                <!-- Website del gimnasio -->
+                <TextView
+                    android:id="@+id/gymWebsiteTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Website"
+                    android:drawableLeft="@drawable/ic_website"
+                    android:drawablePadding="8dp"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:paddingBottom="8dp" />
+
+                <!-- Descripción del gimnasio -->
+                <TextView
+                    android:id="@+id/gymDescriptionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:drawableLeft="@drawable/ic_info"
+                    android:drawablePadding="8dp"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:paddingBottom="8dp" />
+
+                <!-- Email del gimnasio -->
+                <TextView
+                    android:id="@+id/gymEmailTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E-mail"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawablePadding="8dp"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    android:paddingBottom="8dp" />
+
+                <!-- Repite para los demás: Teléfono, Horario, etc... -->
+                <!-- ... -->
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+    <!-- Menú inferior -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/beige"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,21 +16,28 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Ocultar la barra de acción
         supportActionBar?.hide()
-
         bottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        // Cargar fragmento inicial (Home)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment())
-                .commit()
-            bottomNavigationView.selectedItemId = R.id.nav_home
+
+        val targetFragment = intent.getIntExtra("fragment", R.id.nav_home)
+
+        val fragment = when (targetFragment) {
+            R.id.nav_profile -> ProfileFragment()
+            R.id.nav_shopping -> ShoppingFragment()
+            else -> HomeFragment()
         }
 
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+
+        bottomNavigationView.selectedItemId = targetFragment
+
+        // Listener de navegación
         bottomNavigationView.setOnItemSelectedListener { item ->
-            val fragment = when (item.itemId) {
+          val fragment = when (item.itemId) {
                 R.id.nav_home -> HomeFragment()
                 R.id.nav_profile -> ProfileFragment()
                 R.id.nav_shopping -> ShoppingFragment()
@@ -38,16 +45,8 @@ class HomeActivity : AppCompatActivity() {
                 //R.id.nav_favorites -> goto()
                 else -> null
             }
-
-            fragment?.let {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, it)
-                    .commit()
-                true
-            } ?: false
         }
 
     }
 
 }
-

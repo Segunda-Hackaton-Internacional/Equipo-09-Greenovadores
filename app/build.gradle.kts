@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,7 +66,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation("com.google.firebase:firebase-auth-ktx:23.2.1")
@@ -75,5 +75,21 @@ dependencies {
     //UI
     implementation("com.hbb20:ccp:2.7.0") // Seleccionar codigo telefonico por pais
     implementation("com.github.bumptech.glide:glide:4.16.0") // Cargar imagenes
+    
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+
+
+    // Retrofit para manejar peticiones HTTP
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // Gson para convertir JSON
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+
+    // Librería de Gson para trabajar con JSON
+    implementation ("com.google.code.gson:gson:2.8.8")
 }
