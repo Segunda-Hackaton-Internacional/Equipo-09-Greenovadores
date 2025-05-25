@@ -5,6 +5,7 @@
     <queries>
         <package android:name="com.google.android.gms" />
         <package android:name="com.android.vending" />
+
         <intent>
             <action android:name="com.google.firebase.auth.api.gms.ui.START_SIGN_IN" />
         </intent>
@@ -21,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NagomiAtoru"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activities.RecipesActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.ProfileSetupActivity"
             android:exported="false" />

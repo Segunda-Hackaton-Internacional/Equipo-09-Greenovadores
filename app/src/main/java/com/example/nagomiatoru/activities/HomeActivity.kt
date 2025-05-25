@@ -1,7 +1,9 @@
 package com.example.nagomiatoru.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.nagomiatoru.R
 import com.example.nagomiatoru.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.nav_profile -> ProfileFragment()
                 R.id.nav_shopping -> ShoppingFragment()
                 R.id.nav_wellness -> WellnessFragment()
-                R.id.nav_favorites -> FavoritesFragment()
+                //R.id.nav_favorites -> goto()
                 else -> null
             }
 
@@ -44,6 +46,8 @@ class HomeActivity : AppCompatActivity() {
                 true
             } ?: false
         }
+
     }
+
 }
 

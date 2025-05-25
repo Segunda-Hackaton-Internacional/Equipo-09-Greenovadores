@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -73,5 +74,6 @@ dependencies {
 
     //UI
     implementation("com.hbb20:ccp:2.7.0") // Seleccionar codigo telefonico por pais
+    implementation("com.github.bumptech.glide:glide:4.16.0") // Cargar imagenes
 
 }
