@@ -51,7 +51,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Speciality">
+                    android:text="Speciality"
+                    android:textColor="@color/black" >
 
                 </TextView>
 
@@ -75,7 +76,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Hours">
+                    android:text="Hours"
+                    android:textColor="@color/black" >
 
                 </TextView>
 
@@ -99,7 +101,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Phone">
+                    android:text="Phone"
+                    android:textColor="@color/black" >
 
                 </TextView>
 
@@ -123,7 +126,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Address">
+                    android:text="Address"
+                    android:textColor="@color/black" >
 
                 </TextView>
 

@@ -37,16 +37,18 @@ class HomeActivity : AppCompatActivity() {
 
         // Listener de navegación
         bottomNavigationView.setOnItemSelectedListener { item ->
-          val fragment = when (item.itemId) {
+            val fragment: Fragment = when (item.itemId) {
                 R.id.nav_home -> HomeFragment()
                 R.id.nav_profile -> ProfileFragment()
                 R.id.nav_shopping -> ShoppingFragment()
-                R.id.nav_wellness -> WellnessFragment()
-                //R.id.nav_favorites -> goto()
-                else -> null
+                else -> return@setOnItemSelectedListener false
             }
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit()
+
+            true
         }
-
     }
-
 }

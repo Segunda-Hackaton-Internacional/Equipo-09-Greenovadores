@@ -34,7 +34,7 @@ object SessionManager {
 
     fun getUid(): String? = prefs.getString(KEY_UID, null)
     fun getEmail(): String? = prefs.getString(KEY_EMAIL, null)
-    fun getName(): String? = prefs.getString(PREF_NAME, null)
+    fun getName(): String? = prefs.getString(KEY_NAME, null)
     fun getPhone(): String? = prefs.getString(KEY_PHONE, null)
     fun getBirthDate(): String? = prefs.getString(KEY_BIRTH_DATE, null)
     fun getSex(): String? = prefs.getString(KEY_SEX, null)

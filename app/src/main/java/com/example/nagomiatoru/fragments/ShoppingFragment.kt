@@ -33,7 +33,7 @@ class ShoppingFragment : Fragment() {
 
     private fun openWebStore() {
         // URL de la tienda online (reemplazar con la URL real)
-        val storeUrl = "http://nagomi-atoru.site"
+        val storeUrl = "https://nagomi-atoru.site/store/"
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(storeUrl))
         startActivity(intent)
     }

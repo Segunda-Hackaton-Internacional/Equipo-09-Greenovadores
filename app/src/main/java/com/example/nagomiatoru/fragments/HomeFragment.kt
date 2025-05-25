@@ -9,7 +9,9 @@ import android.widget.Toast
 import com.example.nagomiatoru.R
 import com.google.android.material.button.MaterialButton
 import androidx.fragment.app.Fragment
+import com.example.nagomiatoru.activities.HospitalsActivity
 import com.example.nagomiatoru.activities.NearbyGymsActivity
+import com.example.nagomiatoru.activities.RecipesActivity
 
 class HomeFragment : Fragment() {
     override fun onCreateView(
@@ -31,7 +33,8 @@ class HomeFragment : Fragment() {
 
         // Redirección a cada fragmento
         btnClinicas.setOnClickListener {
-            Toast.makeText(requireContext(), "Funcionalidad en desarrollo", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), HospitalsActivity::class.java)
+            startActivity(intent)
         }
 
         btnGimnasios.setOnClickListener {
@@ -41,7 +44,8 @@ class HomeFragment : Fragment() {
 
 
         btnRecetas.setOnClickListener {
-            Toast.makeText(requireContext(), "Funcionalidad en desarrollo", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), RecipesActivity::class.java)
+            startActivity(intent)
         }
 
         btnRecreacion.setOnClickListener {

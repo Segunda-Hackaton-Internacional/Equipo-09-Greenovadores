@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.nagomiatoru.R
 import com.example.nagomiatoru.adapters.HospitalAdapter
 import com.example.nagomiatoru.data.App
 import com.example.nagomiatoru.databinding.ActivityHospitalsBinding
@@ -53,7 +54,7 @@ class HospitalsActivity : AppCompatActivity() {
     private fun setupSpinner() {
         val specialities = listOf("All") + DiseaseCategoryEnum.values().map { it.toString() }
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, specialities)
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, specialities)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spDiseases.adapter = adapter
     }
