@@ -50,9 +50,11 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         textLogin.setOnClickListener {
-            // Navigate to login screen
-            // Intent to LoginActivity
-            finish()
+            val intent = Intent(
+                this,
+                LoginActivity::class.java
+            )
+            startActivity(intent)
         }
 
         textPublicAgreement.setOnClickListener {

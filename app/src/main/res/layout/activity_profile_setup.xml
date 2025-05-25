@@ -56,18 +56,9 @@
                 android:id="@+id/imageProfile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_profile_placeholder"
-                android:background="@drawable/circle_background"
+                android:background="@drawable/logo_app"
                 android:padding="8dp"/>
 
-            <ImageView
-                android:id="@+id/buttonAddPhoto"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_camera"
-                android:background="@drawable/camera_background"
-                android:layout_gravity="bottom|end"
-                android:padding="4dp"/>
         </FrameLayout>
     </LinearLayout>
 

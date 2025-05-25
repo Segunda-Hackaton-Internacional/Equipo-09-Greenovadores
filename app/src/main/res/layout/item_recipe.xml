@@ -32,7 +32,7 @@
             android:orientation="horizontal">
 
             <!-- Imagen -->
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivRecipeImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/beige"
                     android:textColor="@color/brown"
-                    android:text="See more" />
+                    android:text="See more"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

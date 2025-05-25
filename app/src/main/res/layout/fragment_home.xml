@@ -3,119 +3,214 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/beige">
+    android:background="@drawable/gradient_background"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:padding="16dp">
+        android:padding="24dp"
+        android:paddingTop="40dp">
 
-        <!-- Logo -->
-        <ImageView
-            android:id="@+id/imageViewLogo"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:src="@drawable/logo_app"
-            android:contentDescription="ChattyAI Logo" />
+        <!-- Logo con sombra y animación -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="12dp"
+            android:layout_marginBottom="32dp">
 
-        <!-- Título -->
-        <TextView
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imageViewLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo_app"
+                android:contentDescription="ChattyAI Logo"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Contenedor de títulos con fondo semi-transparente -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Welcome to"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <!-- Nombre de la app -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nagomi Atoru 👋"
-            android:textColor="@color/green"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <!-- Texto descriptivo -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:orientation="vertical"
             android:gravity="center"
-            android:text="Start this fantastic trip"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="16sp" />
+            android:background="@drawable/title_background"
+            android:padding="24dp"
+            android:layout_marginBottom="40dp">
 
-        <!-- SECCIÓN DE BOTONES DE RECOMENDACIÓN -->
-        <View android:layout_height="24dp" android:layout_width="match_parent"/> <!-- Espaciado -->
+            <!-- Título principal -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome to"
+                android:textColor="@color/text_primary"
+                android:textSize="26sp"
+                android:textStyle="normal"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="0.02" />
 
-        <!-- Botón 1: Recetas con atole -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_recetas"
+            <!-- Nombre de la app con gradiente -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Nagomi Atoru 👋"
+                android:textColor="@color/accent_primary"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01" />
+
+            <!-- Texto descriptivo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="Start this fantastic trip"
+                android:textColor="@color/text_secondary"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-light"
+                android:alpha="0.8" />
+
+        </LinearLayout>
+
+        <!-- SECCIÓN DE BOTONES MEJORADOS -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recomendar recetas con atole"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:paddingVertical="12dp"
-            android:paddingStart="12dp"
-            app:icon="@drawable/ic_food"
-            app:iconPadding="8dp"
-            app:iconSize="24dp"
-            app:iconGravity="textStart"
-            android:layout_marginTop="8dp" />
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
 
-        <!-- Botón 2: Gimnasios cercanos -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_gimnasios"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recomendar gimnasios cercanos"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:paddingVertical="12dp"
-            android:paddingStart="12dp"
-            app:icon="@drawable/ic_sports"
-            app:iconPadding="8dp"
-            app:iconSize="24dp"
-            app:iconGravity="textStart"
-            android:layout_marginTop="8dp" />
+            <!-- Botón 1: Recetas con atole -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/card_background">
 
-        <!-- Botón 3: Clínicas por especialidad -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_clinicas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recomendar clínicas por especialidad"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:paddingVertical="12dp"
-            android:paddingStart="12dp"
-            app:icon="@drawable/ic_clinic"
-            app:iconPadding="8dp"
-            app:iconSize="24dp"
-            app:iconGravity="textStart"
-            android:layout_marginTop="8dp" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_recetas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suggest recipes with atole"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:paddingVertical="18dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:background="@drawable/button_recipe_selector"
+                    app:icon="@drawable/ic_food"
+                    app:iconPadding="12dp"
+                    app:iconSize="28dp"
+                    app:iconTint="@color/icon_recipe"
+                    app:iconGravity="textStart"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.01" />
 
-        <!-- Botón 4: Lugares recreativos cercanos -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_recreacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recomendar lugares recreativos cercanos"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:paddingVertical="12dp"
-            android:paddingStart="12dp"
-            app:icon="@drawable/ic_recreacion"
-            app:iconPadding="8dp"
-            app:iconSize="24dp"
-            app:iconGravity="textStart"
-            android:layout_marginTop="8dp" />
+            </androidx.cardview.widget.CardView>
 
+            <!-- Botón 2: Gimnasios cercanos -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_gimnasios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suggest nearby gyms"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:paddingVertical="18dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:background="@drawable/button_gym_selector"
+                    app:icon="@drawable/ic_sports"
+                    app:iconPadding="12dp"
+                    app:iconSize="28dp"
+                    app:iconTint="@color/icon_gym"
+                    app:iconGravity="textStart"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.01" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Botón 3: Clínicas por especialidad -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_clinicas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suggest clinics by specialty"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:paddingVertical="18dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:background="@drawable/button_clinic_selector"
+                    app:icon="@drawable/ic_clinic"
+                    app:iconPadding="12dp"
+                    app:iconSize="28dp"
+                    app:iconTint="@color/icon_clinic"
+                    app:iconGravity="textStart"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.01" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Botón 4: Lugares recreativos cercanos -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_recreacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suggest nearby recreational places"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:paddingVertical="18dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:background="@drawable/button_recreation_selector"
+                    app:icon="@drawable/ic_recreacion"
+                    app:iconPadding="12dp"
+                    app:iconSize="28dp"
+                    app:iconTint="@color/icon_recreation"
+                    app:iconGravity="textStart"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.01" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

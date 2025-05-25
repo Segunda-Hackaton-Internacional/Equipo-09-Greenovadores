@@ -40,11 +40,6 @@ class ProfileSetupActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.buttonAddPhoto.setOnClickListener {
-            // Open gallery or camera to select profile photo
-            showImagePickerDialog()
-        }
-
         val genderOptions = SexEnum.getDisplayList()
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genderOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

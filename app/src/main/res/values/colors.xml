@@ -17,5 +17,28 @@
     <color name="red">#FF5252</color>
     <color name="yellow">#FFD600</color>
     <color name="dark_gray">#666666</color>
+    <color name="background_start">#E8F5E8</color>
+    <color name="background_end">#F0F8FF</color>
+    <color name="text_primary">#2C3E50</color>
+    <color name="text_secondary">#5D6D7E</color>
+    <color name="accent_primary">#27AE60</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="button_text">#2C3E50</color>
+
+    <!-- Colores para iconos -->
+    <color name="icon_recipe">#FF6B35</color>
+    <color name="icon_gym">#3498DB</color>
+    <color name="icon_clinic">#E74C3C</color>
+    <color name="icon_recreation">#9B59B6</color>
+
+    <!-- Colores para botones -->
+    <color name="button_recipe_normal">#FFF3F0</color>
+    <color name="button_recipe_pressed">#FFE5DD</color>
+    <color name="button_gym_normal">#F0F8FF</color>
+    <color name="button_gym_pressed">#E6F3FF</color>
+    <color name="button_clinic_normal">#FFF0F0</color>
+    <color name="button_clinic_pressed">#FFE6E6</color>
+    <color name="button_recreation_normal">#F8F0FF</color>
+    <color name="button_recreation_pressed">#F0E6FF</color>
 
 </resources>
