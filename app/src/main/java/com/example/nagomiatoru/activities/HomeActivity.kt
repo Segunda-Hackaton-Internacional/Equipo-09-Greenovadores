@@ -1,5 +1,6 @@
 package com.example.nagomiatoru.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nagomiatoru.R
@@ -14,36 +15,49 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Ocultar la barra de acción
         supportActionBar?.hide()
-
         bottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        // Cargar fragmento inicial (Home)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment())
-                .commit()
-            bottomNavigationView.selectedItemId = R.id.nav_home
+
+        val targetFragment = intent.getIntExtra("fragment", R.id.nav_home)
+
+        val fragment = when (targetFragment) {
+            R.id.nav_profile -> ProfileFragment()
+            R.id.nav_shopping -> ShoppingFragment()
+            else -> HomeFragment()
         }
 
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            val fragment = when (item.itemId) {
-                R.id.nav_home -> HomeFragment()
-                R.id.nav_profile -> ProfileFragment()
-                R.id.nav_shopping -> ShoppingFragment()
-                R.id.nav_wellness -> WellnessFragment()
-                R.id.nav_favorites -> FavoritesFragment()
-                else -> null
-            }
 
-            fragment?.let {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, it)
-                    .commit()
-                true
-            } ?: false
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+
+        bottomNavigationView.selectedItemId = targetFragment
+
+        // Listener de navegación
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, HomeFragment())
+                        .commit()
+                    true
+                }
+                R.id.nav_profile -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ProfileFragment())
+                        .commit()
+                    true
+                }
+                R.id.nav_shopping -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ShoppingFragment())
+                        .commit()
+                    true
+                }
+
+                else -> false
+            }
         }
     }
 }
-
