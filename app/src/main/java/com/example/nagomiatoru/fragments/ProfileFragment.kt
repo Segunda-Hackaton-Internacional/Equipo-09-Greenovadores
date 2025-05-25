@@ -12,8 +12,12 @@ import androidx.fragment.app.Fragment
 import com.example.nagomiatoru.R
 import com.example.nagomiatoru.activities.LoginActivity
 import com.example.nagomiatoru.activities.WelcomeActivity
+import com.example.nagomiatoru.data.App
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +58,7 @@ class ProfileFragment : Fragment() {
         val layoutLogout = view.findViewById<LinearLayout>(R.id.layout_logout)
         layoutLogout.setOnClickListener {
             Toast.makeText(context, "Cerrando sesión...", Toast.LENGTH_SHORT).show()
+            App.auth.signOut()
             val intent = Intent(requireContext(), WelcomeActivity::class.java)
             startActivity(intent)
             requireActivity().finish()

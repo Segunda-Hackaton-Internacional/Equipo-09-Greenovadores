@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/beige">
@@ -104,26 +105,15 @@
         android:padding="4dp"
         android:layout_marginBottom="16dp">
 
-        <LinearLayout
-            android:id="@+id/layoutCountryCode"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/imageFlag"
-                android:layout_width="24dp"
-                android:layout_height="16dp"
-                android:src="@drawable/flag_us"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" 🔽 "
-                android:textSize="12sp"/>
-        </LinearLayout>
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/phoneCodePicker"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_rememberLastSelection="true"
+            android:layout_marginEnd="8dp"
+            />
 
         <EditText
             android:id="@+id/editTextPhoneNumber"
@@ -136,11 +126,6 @@
             android:textSize="16sp"
             android:padding="8dp"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_phone"
-            android:layout_marginStart="4dp"/>
     </LinearLayout>
 
     <!-- Gender Field -->

@@ -10,7 +10,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nagomiatoru.R
-import com.example.nagomiatoru.utils.SuccessDialogFragment
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -70,11 +69,13 @@ class SignUpActivity : AppCompatActivity() {
 
         buttonContinue.setOnClickListener {
             if (validateForm()) {
-                // Save user credentials
-                saveUserCredentials()
+                val email = editTextEmail.text.toString()
+                val password = editTextPassword.text.toString()
 
-                // Navigate to profile setup activity
-                val intent = Intent(this, ProfileSetupActivity::class.java)
+                val intent = Intent(this, ProfileSetupActivity::class.java).apply {
+                    putExtra("email", email)
+                    putExtra("password", password)
+                }
                 startActivity(intent)
             }
         }
@@ -106,11 +107,6 @@ class SignUpActivity : AppCompatActivity() {
         return isValid
     }
 
-    private fun saveUserCredentials() {
-        // Save user email and password to SharedPreferences or your backend
-        val email = editTextEmail.text.toString().trim()
-        val password = editTextPassword.text.toString()
-    }
 
 
 }

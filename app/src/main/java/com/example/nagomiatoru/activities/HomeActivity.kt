@@ -3,6 +3,7 @@ package com.example.nagomiatoru.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.nagomiatoru.R
 import com.example.nagomiatoru.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -36,28 +37,16 @@ class HomeActivity : AppCompatActivity() {
 
         // Listener de navegación
         bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, HomeFragment())
-                        .commit()
-                    true
-                }
-                R.id.nav_profile -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, ProfileFragment())
-                        .commit()
-                    true
-                }
-                R.id.nav_shopping -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, ShoppingFragment())
-                        .commit()
-                    true
-                }
-
-                else -> false
+          val fragment = when (item.itemId) {
+                R.id.nav_home -> HomeFragment()
+                R.id.nav_profile -> ProfileFragment()
+                R.id.nav_shopping -> ShoppingFragment()
+                R.id.nav_wellness -> WellnessFragment()
+                //R.id.nav_favorites -> goto()
+                else -> null
             }
         }
+
     }
+
 }

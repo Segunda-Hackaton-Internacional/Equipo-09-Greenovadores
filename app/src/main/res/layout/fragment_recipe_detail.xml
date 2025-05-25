@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:backgroundTint="@color/beige"
+    tools:context=".fragments.RecipeDetailFragment">
+
+    <!-- Header with back button -->
+    <LinearLayout
+        android:id="@+id/headLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back button" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headLay"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/tvRecipeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recipe Title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/brown"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Imagen -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/brown"
+                android:padding="20dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:id="@+id/ivRecipeImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    />
+
+            </LinearLayout>
+
+
+            <!-- Descripción -->
+            <TextView
+                android:id="@+id/tvRecipeDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recipe Description"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Ingredientes -->
+            <TextView
+                android:id="@+id/tvIngredientsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredients:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/green"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="@color/green">
+
+                <TextView
+                    android:id="@+id/tvIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="List of ingredients"
+                    android:textSize="16sp"
+                    android:padding="20dp"
+                    android:textAlignment="center"
+                    android:background="@color/white"
+                    />
+
+            </LinearLayout>
+"
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
